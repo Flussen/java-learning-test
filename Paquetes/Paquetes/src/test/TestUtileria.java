@@ -1,10 +1,14 @@
 package test;
 
-//import com.flussen.Utileria;
-import static com.flussen.Utileria.imprimir;
+import domain.Persona;
 
 public class TestUtileria {
     public static void main(String[] args) {
-        imprimir("Saludos");
+        System.out.println();
+
+        final Persona persona1 = new Persona();
+        // persona1 = new Persona();
+        persona1.setNombre("juan");
+        System.out.println("persona1 = " + persona1.getNombre());
     }
 }
