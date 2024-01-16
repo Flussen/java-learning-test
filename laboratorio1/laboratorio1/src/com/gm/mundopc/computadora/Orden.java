@@ -1,7 +1,7 @@
 package com.gm.mundopc.computadora;
 
 public class Orden {
-    private int idOrden;
+    private final int idOrden;
     private Computadora computadoras[];
     private static int contadorOrdenes;
     private int contadorComputadoras;

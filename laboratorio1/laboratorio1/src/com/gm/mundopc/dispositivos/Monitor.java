@@ -1,15 +1,19 @@
-package com.gm.mundopc.monitor;
+package com.gm.mundopc.dispositivos;
 
 public class Monitor {
-    private int idMonitor;
+    private final int idMonitor;
     private String marca;
     private double tamano;
     private static int contadorMonitores;
 
+    private Monitor() {
+        this.idMonitor = ++contadorMonitores;
+    }
+
     public Monitor(String marca, double tamano) {
+        this();
         this.marca = marca;
         this.tamano = tamano;
-        this.idMonitor = ++contadorMonitores;
     }
 
     public int getIdMonitor() {

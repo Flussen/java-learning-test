@@ -1,10 +1,7 @@
 package test;
 
-import com.gm.mundopc.computadora.Computadora;
-import com.gm.mundopc.computadora.Orden;
-import com.gm.mundopc.dispositivos.Raton;
-import com.gm.mundopc.dispositivos.Teclado;
-import com.gm.mundopc.monitor.Monitor;
+import com.gm.mundopc.computadora.*;
+import com.gm.mundopc.dispositivos.*;
 
 public class TestMundoPC {
     public static void main(String[] args) {

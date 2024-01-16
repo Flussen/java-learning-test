@@ -1,23 +1,27 @@
 package com.gm.mundopc.computadora;
 
+import com.gm.mundopc.dispositivos.Monitor;
 import com.gm.mundopc.dispositivos.Raton;
 import com.gm.mundopc.dispositivos.Teclado;
-import com.gm.mundopc.monitor.Monitor;
 
 public class Computadora {
-    protected int idComputadora;
+    protected final int idComputadora;
     protected String nombre;
     protected Monitor monitor;
     protected Teclado teclado;
     protected Raton raton;
     private static int contadorComputadora;
 
+    private Computadora() {
+        this.idComputadora = ++contadorComputadora;
+    }
+
     public Computadora(String nombre, Monitor monitor, Teclado teclado, Raton raton) {
+        this();
         this.nombre = nombre;
         this.monitor = monitor;
         this.teclado = teclado;
         this.raton = raton;
-        this.idComputadora = ++contadorComputadora;
     }
 
     public int getIdComputadora() {
