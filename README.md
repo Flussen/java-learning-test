@@ -14,8 +14,7 @@ My little scrap shop in Java...
 
 | Name | About |
 | ------ | ------ |
-| Arrays/Arreglos | A little test with the Arrays 🫙 |
-| Paquetes | Package management 📦 |
-| Herencia | Inheritance practices 👨‍👦 |
-| SobreCargaDeMetodos | Method loading test 🧪 |
+| CatalogoPelicula | Catalog for movie with Scanner 🫙 |
+| FilesManagement | files management 📦 |
+| JavaBeans | practices 👨‍👦 |
 | __Bill Project__ | Small order and product management system 🧾 |
