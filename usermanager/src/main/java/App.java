@@ -59,7 +59,7 @@ public class App {
             + "3. Actualizar Usuario\n"
             + "4. Borrar Usuario\n"
             + "0. Salir");
-        System.out.println("");
+            System.out.println("");
     }
     private static int obtenerOpcion(Scanner scanner){
         int opcion;
@@ -114,5 +114,4 @@ public class App {
         System.out.println("");
         userManager.borrarUsuario(id);
     }
-    
 }

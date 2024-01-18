@@ -1,7 +1,10 @@
 package manager;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 
+import datos.Conexion;
 import datos.UsuarioDAO;
 import domain.Usuario;
 
@@ -33,32 +36,98 @@ public class MainUserManager implements IUserManager{
 
     @Override
     public void agregarUsuario(String user, String pwd) {
+        Connection conexion = null;
         try {
-            Usuario usuario = new Usuario(user, pwd);
-            this.internDao.insertar(usuario);
-        } catch (Exception e) {
-            e.printStackTrace(System.out);
+            conexion = Conexion.getConnection();
+            if(conexion.getAutoCommit()){
+                conexion.setAutoCommit(false);
+            }
+            Usuario nuevoUsuario = new Usuario(user, pwd);
+            UsuarioDAO usuarioDao = new UsuarioDAO(conexion);
+            usuarioDao.insertar(nuevoUsuario);
+            conexion.commit();
+
+        } catch (Exception e1) {
+            try {
+                if(conexion != null){
+                    conexion.rollback();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace(System.out);
+            }
+            e1.printStackTrace(System.out);
+        }finally {
+            try {
+                if (conexion != null) {
+                    conexion.close();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace(System.out);
+            }
         }
     }
 
     @Override
     public void actualizarUsuario(int id_usuario, String user, String pwd) {
+        Connection conexion = null;
         try {
-            Usuario usuario = new Usuario(user, pwd, id_usuario);
-            this.internDao.actualizar(usuario);
+            conexion = Conexion.getConnection();
+            if(conexion.getAutoCommit()){
+                conexion.setAutoCommit(false);
+            }
+            Usuario nuevoUsuario = new Usuario(user, pwd, id_usuario);
+            UsuarioDAO usuarioDAO = new UsuarioDAO(conexion);
+            usuarioDAO.actualizar(nuevoUsuario);
+            conexion.commit();
         } catch (Exception e) {
+            try {
+                if (conexion != null) {
+                    conexion.rollback();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace(System.out);
+            }
             e.printStackTrace(System.out);
+        } finally {
+            try {
+                if (conexion != null) {
+                    conexion.close();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace(System.out);
+            }
         }
     }
 
     @Override
     public void borrarUsuario(int id_usuario) {
+        Connection conexion = null;
         try {
+            conexion = Conexion.getConnection();
+            if(conexion.getAutoCommit()){
+                conexion.setAutoCommit(false);
+            }
             Usuario usuario = new Usuario(id_usuario);
-            this.internDao.borrar(usuario);
+            UsuarioDAO usuarioDao = new UsuarioDAO(conexion);
+            usuarioDao.borrar(usuario);
+            conexion.commit();
         } catch (Exception e) {
+            try {
+                if (conexion != null) {
+                    conexion.rollback();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace(System.out);
+            }
             e.printStackTrace(System.out);
+        } finally {
+            try {
+                if (conexion != null) {
+                    conexion.close();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace(System.out);
+            }
         }
     }
-    
 }
